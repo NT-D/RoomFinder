@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/NT-D/RoomFinder#readme",
   "dependencies": {
+    "actions-on-google": "^1.10.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
     "npm": "^5.7.1",
     "typescript": "^2.7.2"
   }
