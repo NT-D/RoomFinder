@@ -2,19 +2,32 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const DialogflowApp = require('actions-on-google').DialogflowApp;
 
+const bookRoomActionName = 'reserve.room';
 
-const app = express();
-app.use(bodyParser.json());
+const expressApp = express();
+expressApp.use(bodyParser.json());
 
-app.post('/gghome',(req,res)=>{
+expressApp.post('/gghome',(req,res)=>{
     console.log(JSON.stringify(req.body));
     
     const dialogApp = new DialogflowApp({
         request : req,
         response : res
     });
-    dialogApp.tell("やりがいあるなぁ～");
-    dialogApp.tell("ゴソゴソ...確保完了です！");
+
+    function bookRoom(){
+        dialogApp.ask("確保しました！");
+    }
+    
+    function communication(){
+        dialogApp.tell("テスト");
+    }
+
+    let actionMap = new Map();
+    actionMap.set(bookRoomActionName,bookRoom);
+
+    dialogApp.handleRequest(actionMap);
 });
 
-app.listen(process.env.PORT || 8080);
+
+expressApp.listen(process.env.PORT || 8080);
