@@ -16,6 +16,7 @@ expressApp.post('/gghome',(req,res)=>{
     });
 
     function bookRoom(){
+        console.log(`Access Token:${dialogApp.getUser().accessToken}`);
         dialogApp.ask("確保しました！");
     }
     
