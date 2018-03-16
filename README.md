@@ -32,7 +32,9 @@ For OAuth authentication, need to register app and pickup `Client ID` and `Clien
 5. Save your change.
 
 ### Setup Dialog flow (Basic)
-[Play around to build your first agent](https://dialogflow.com/docs/getting-started/building-your-first-agent) and try to [use Fulfillment](https://dialogflow.com/docs/getting-started/basic-fulfillment-conversation). You will update Webhook url later.
+- [Play around to build your first agent](https://dialogflow.com/docs/getting-started/building-your-first-agent) and try to [use Fulfillment](https://dialogflow.com/docs/getting-started/basic-fulfillment-conversation). You will update Webhook url later.
+-  Please set `reserve.room` as action name. It need to support Fulfillment.
+
 
 ### Setup Dialog flow (Authentication)
 [Implementing Account Linking](https://developers.google.com/actions/identity/account-linking) with following parameters.
