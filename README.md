@@ -16,7 +16,7 @@ This is demo project for booking meeting room in Office 365 Tenant by Google Ass
 ![architecture](./img/architecture.png)
 
 ## Prerequisites
-- Install [Node.js](https://nodejs.org/en/) in your development environment
+- Install [Node.js](https://nodejs.org/en/) in your development environment. I assume you can understand es6.
 - Basic TypeScript knowledge. Please learn from [tutorial document](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
 - I assume you have O365 tenant. If you want to try O365, you can try trhough [Free trial] in [product page](https://products.office.com/en/business/office-365-enterprise-e3-business-software)
 - In addition to it, I assume you have meeting room as resource mail box in O365 tenant. If you dont't have it, you can make it with [this document](https://support.office.com/en-us/article/room-and-equipment-mailboxes-9f518a6d-1e2c-4d44-93f3-e19013a1552b#ID0EABAAA=Set_it_up)
@@ -32,10 +32,20 @@ For OAuth authentication, need to register app and pickup `Client ID` and `Clien
 5. Save your change.
 
 ### Setup Dialog flow (Basic)
-
+[Play around to build your first agent](https://dialogflow.com/docs/getting-started/building-your-first-agent) and try to [use Fulfillment](https://dialogflow.com/docs/getting-started/basic-fulfillment-conversation). You will update Webhook url later.
 
 ### Setup Dialog flow (Authentication)
+[Implementing Account Linking](https://developers.google.com/actions/identity/account-linking) with following parameters.
+|Property name|Value|
+|--|--|
+|Grant type|Authorization code|
+|Client ID|Application Id generated in app registration portal|
+|Client secret|Password generated in app registration portal|
+|Authorization URL|https://login.microsoftonline.com/common/oauth2/v2.0/authorize|
+|Token URL |https://login.microsoftonline.com/common/oauth2/v2.0/token|
+|Scopes|https://graph.microsoft.com/Calendars.ReadWrite.Shared https://graph.microsoft.com/User.Read|
 
+*Important*: You need to turn on [Sign in required] in the [Integration menu] in [dialog flow console](https://console.dialogflow.com).
 
 ## How to run
 1. `git clone https://github.com/NT-D/RoomFinder.git`
@@ -46,8 +56,20 @@ For OAuth authentication, need to register app and pickup `Client ID` and `Clien
 6. [Set previous url in the Fulfillment settings](https://dialogflow.com/docs/getting-started/basic-fulfillment-conversation#enable_webhook_in_dialogflow) in dialog flow.
 
 ## Implementation description
+### How to get access token
+You can get access token through this code in `app.ts`.
+```javascript
+dialogApp.getUser().accessToken
+```
 
 ### Call MS Graph by app
+You can call graph API like this code in `msgraphService.ts`.
+```javascript
+export async function getUserInfo(accessToken: string): Promise<msGraph.User> {
+    const response = await fetch(`${apiEndpointUrl}/me`, { method: 'GET', headers: { 'Authorization': `Bearer ${accessToken}` } });
+    return await response.json() as msGraph.User;
+}
+```
 
 # Userful resources
 - [Samples and Libraries for Actions on Google](https://github.com/actions-on-google)
