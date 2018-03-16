@@ -21,6 +21,22 @@ This is demo project for booking meeting room in Office 365 Tenant by Google Ass
 - I assume you have O365 tenant. If you want to try O365, you can try trhough [Free trial] in [product page](https://products.office.com/en/business/office-365-enterprise-e3-business-software)
 - In addition to it, I assume you have meeting room as resource mail box in O365 tenant. If you dont't have it, you can make it with [this document](https://support.office.com/en-us/article/room-and-equipment-mailboxes-9f518a6d-1e2c-4d44-93f3-e19013a1552b#ID0EABAAA=Set_it_up)
 
+## How to setup
+For OAuth authentication, need to register app and pickup `Client ID` and `Client Secret`. In addition to it, need to set redirect url and scope. You can learn how to setup with following section.
+
+### Register app in Microsoft App registration portal
+1. Register(create) new app in the [app registration portal](https://apps.dev.microsoft.com/) with [this document](https://developer.microsoft.com/en-us/graph/docs/concepts/auth_register_app_v2). Please save your `Applicaion Id(Client ID)` and `Password(Client Secret)` in the clipboard.
+2. Add platform as `Web` with [Add Platform]button.
+3. Paste `https://oauth-redirect.googleusercontent.com/r/<Your project id>` in the [Redirect URLs]text box.
+4. Add `Calendars.ReadWrite.Shared` and `User.Read` delegated permissions in the [Microsoft Graph Permissions]section.
+5. Save your change.
+
+### Setup Dialog flow (Basic)
+
+
+### Setup Dialog flow (Authentication)
+
+
 ## How to run
 1. `git clone https://github.com/NT-D/RoomFinder.git`
 2. `npm install` in terminal(or command prompt) for installing node modules
@@ -29,21 +45,13 @@ This is demo project for booking meeting room in Office 365 Tenant by Google Ass
 5. Setup [ngrok](https://ngrok.com/) and create forwarding url (ex. You will get the url like https://c349cad0.ngrok.io)
 6. [Set previous url in the Fulfillment settings](https://dialogflow.com/docs/getting-started/basic-fulfillment-conversation#enable_webhook_in_dialogflow) in dialog flow.
 
-## Implementation steps
-### Register app in Microsoft App registration portal
-
-### Setup Dialog flow (Basic)
-
-### Setup Dialog flow (Authentication)
+## Implementation description
 
 ### Call MS Graph by app
 
 # Userful resources
 - [Samples and Libraries for Actions on Google](https://github.com/actions-on-google)
-- [Account link]()
-- [App registration portal](https://apps.dev.microsoft.com/)
-- [
-Get started with Microsoft Graph in a Node.js app](https://developer.microsoft.com/en-us/graph/docs/concepts/nodejs)
+- [Get started with Microsoft Graph in a Node.js app](https://developer.microsoft.com/en-us/graph/docs/concepts/nodejs)
 - [MS Graph Types](https://github.com/microsoftgraph/msgraph-typescript-typings)
 - [Time zone lists](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones)
 - [Get started with Microsoft Graph in a Node.js app](https://developer.microsoft.com/en-us/graph/docs/concepts/nodejs)
