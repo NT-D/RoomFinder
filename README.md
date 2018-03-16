@@ -39,7 +39,7 @@ For OAuth authentication, need to register app and pickup `Client ID` and `Clien
 ### Setup Dialog flow (Authentication)
 [Implementing Account Linking](https://developers.google.com/actions/identity/account-linking) with following parameters.
 |Property name|Value|
-|--|--|
+|:---|:---|
 |Grant type|Authorization code|
 |Client ID|Application Id generated in app registration portal|
 |Client secret|Password generated in app registration portal|
