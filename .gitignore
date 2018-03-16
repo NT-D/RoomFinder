@@ -59,3 +59,6 @@ typings/
 
 # Typescript dist files
 dist
+
+# VS Code debug configuration
+.vscode
